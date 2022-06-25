@@ -6,10 +6,11 @@
 //
 
 import SwiftUI
-
+import Alamofire
 struct TipDetailScreen: View {
     
-    var tips : Tip
+    @State var tips : TipModel = TipModel()
+    var name : String
     
     var body: some View {
         
@@ -40,11 +41,15 @@ struct TipDetailScreen: View {
                 }
             }
         }
+            .onAppear(){
+                let request = AF.request("https://plankton-app-jr8ee.ondigitalocean.app/api/tips/\(name)")
+                
+                request.responseDecodable(of: TipModel.self){response in
+                    
+                    tips = response.value ?? TipModel()
+            }
+        }
     }
+    
 }
 
-struct TipDetailScreen_Previews: PreviewProvider {
-    static var previews: some View {
-        TipDetailScreen(tips: Tip())
-    }
-}

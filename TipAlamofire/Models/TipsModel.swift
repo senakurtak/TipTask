@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Tip : Hashable , Decodable {
+struct TipModel : Hashable , Decodable {
     
     var _id : String = ""
     var name : String = ""

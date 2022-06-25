@@ -8,7 +8,7 @@ import SwiftUI
 
 struct TipScreen: View {
     
-    @State var TipList : [Tip] = []
+    @State var TipList : [TipModel] = []
     
     var body: some View {
         VStack{

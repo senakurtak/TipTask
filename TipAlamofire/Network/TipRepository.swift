@@ -10,23 +10,22 @@ import Alamofire
 
 class TipRepository {
     
-    func getAllTips(completion:@escaping ([Tip]) -> Void){
+    func getAllTips(completion:@escaping ([TipModel]) -> Void){
         
         let request = AF.request("https://plankton-app-jr8ee.ondigitalocean.app/api/tips")
         
-        request.responseDecodable(of: [Tip].self){ response in
+        request.responseDecodable(of: [TipModel].self){ response in
             
             completion(response.value!)
             
         }
     }
     
-    
-    func getProductById(id: Int, completion: @escaping (Tip) -> Void){
+    func getTipsById(id: Int, completion: @escaping (TipModel) -> Void){
 
         let request = AF.request("https://plankton-app-jr8ee.ondigitalocean.app/api/tips")
 
-        request.responseDecodable(of: Tip.self){ response in
+        request.responseDecodable(of: TipModel.self){ response in
 
             completion(response.value!)
 

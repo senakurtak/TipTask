@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct HomeScreenTip: View {
-    @State var TipList : [Tip] = []
+    @State var TipList : [TipModel] = []
     @State var istapped : Bool = false
     var body: some View {
         
@@ -48,7 +48,10 @@ struct HomeScreenTip: View {
                                         .cornerRadius(20)
                                     
                                 }
-                                NavigationLink(destination: TipDetailScreen(tips: Tip()), isActive:self.$istapped){
+                                
+                                NavigationLink(destination: TipDetailScreen(tips: TipModel(), name: item.name),isActive: self.$istapped){
+                                
+//                                NavigationLink(destination: TipDetailScreen(tips: Tip()), isActive:self.$istapped){
                                     
                                     Text("\(item.name)")
                                         .foregroundColor(.green)
