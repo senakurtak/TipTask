@@ -4,7 +4,6 @@
 //
 //  Created by Sena Kurtak on 20.06.2022.
 //
-
 import SwiftUI
 
 struct TipScreen: View {
@@ -18,9 +17,8 @@ struct TipScreen: View {
         }.onAppear(){
             
             var tipRepository = TipRepository()
-            
-            tipRepository.getAllTips(){ item in
-                TipList = item
+            tipRepository.getAllTips(){data in
+                TipList = data
             }
             
         }

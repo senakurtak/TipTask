@@ -8,16 +8,15 @@
 import SwiftUI
 
 struct HomeScreenTip: View {
-    
     @State var TipList : [Tip] = []
     @State var istapped : Bool = false
-    
     var body: some View {
         
         NavigationView{
             VStack{
                 HStack{
                     ForEach(TipList, id:\.self){item in
+                        
                         
                         Button(action: {
                             istapped = true
@@ -49,15 +48,19 @@ struct HomeScreenTip: View {
                                         .cornerRadius(20)
                                     
                                 }
-                                Text("\(item.name)")
-                                    .foregroundColor(.green)
+                                NavigationLink(destination: TipDetailScreen(tips: Tip()), isActive:self.$istapped){
+                                    
+                                    Text("\(item.name)")
+                                        .foregroundColor(.green)
+                                }
                                 
                             }
-                        })
-                        
+                        }
+                        )
                     }
                 }
-                NavigationLink("", destination:TipDetailScreen(), isActive:self.$istapped)
+                //                NavigationLink("", destination:TipDetailScreen(), isActive:self.$istapped)
+                
             }
             
         }.onAppear(){
