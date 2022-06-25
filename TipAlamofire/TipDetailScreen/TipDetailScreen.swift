@@ -10,7 +10,7 @@ import Alamofire
 struct TipDetailScreen: View {
     
     @State var tips : TipModel = TipModel()
-    var name : String
+    var _id : String
     
     var body: some View {
         
@@ -37,16 +37,20 @@ struct TipDetailScreen: View {
                             //                                .sectionHeaderStyle()
                         }
                     }
-                    //                    .navigationBarTitle(Text($TipList.name), displayMode: .inline)
+                    .navigationBarTitle(Text(tips.name), displayMode: .inline)
                 }
             }
         }
-            .onAppear(){
-                let request = AF.request("https://plankton-app-jr8ee.ondigitalocean.app/api/tips/\(name)")
+        .onAppear(){
+            
+            let request = AF.request("https://northwind.vercel.app/api/categories/\(_id)")
+            request.responseDecodable(of: TipModel.self){response in
+                tips = response.value ?? TipModel()
                 
-                request.responseDecodable(of: TipModel.self){response in
-                    
-                    tips = response.value ?? TipModel()
+                
+                //            let request = AF.request("https://plankton-app-jr8ee.ondigitalocean.app/api/tips/\(_id)")
+                //            request.responseDecodable(of: TipModel.self){response in
+                //                tips = response.value ?? TipModel()
             }
         }
     }

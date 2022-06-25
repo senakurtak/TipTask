@@ -15,5 +15,5 @@ struct TipModel : Hashable , Decodable {
     var description : String = ""
     var img : String = ""
     var __v : Int = 0
-
+    
 }

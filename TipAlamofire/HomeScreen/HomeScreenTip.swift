@@ -16,15 +16,11 @@ struct HomeScreenTip: View {
             VStack{
                 HStack{
                     ForEach(TipList, id:\.self){item in
-                        
-                        
                         Button(action: {
                             istapped = true
-                            
                         }, label: {
                             VStack {
                                 ZStack {
-                                    
                                     RoundedRectangle(cornerRadius: 20)
                                         .fill(Color(
                                             red: 104/255,
@@ -48,11 +44,7 @@ struct HomeScreenTip: View {
                                         .cornerRadius(20)
                                     
                                 }
-                                
-                                NavigationLink(destination: TipDetailScreen(tips: TipModel(), name: item.name),isActive: self.$istapped){
-                                
-//                                NavigationLink(destination: TipDetailScreen(tips: Tip()), isActive:self.$istapped){
-                                    
+                                NavigationLink(destination: TipDetailScreen(_id: item._id),isActive: self.$istapped ){
                                     Text("\(item.name)")
                                         .foregroundColor(.green)
                                 }
@@ -69,7 +61,6 @@ struct HomeScreenTip: View {
         }.onAppear(){
             
             let tipRepository = TipRepository()
-            
             tipRepository.getAllTips(){ data in
                 TipList = data
             }
