@@ -7,10 +7,11 @@
 
 import SwiftUI
 import Alamofire
+
 struct TipDetailScreen: View {
     
-    @State var tips : TipModel = TipModel()
     var _id : String
+    @State var tips : TipModel = TipModel()
     
     var body: some View {
         
@@ -20,7 +21,7 @@ struct TipDetailScreen: View {
                     Form {
                         Section {
                         } header: {
-                            Text("Key Care Tips for Happy Plants")
+                            Text(tips.name)
                             //                                .sectionHeaderStyle()
                                 .foregroundColor(Color(red: 0.41, green: 0.55, blue: 0.27))
                         }
@@ -42,11 +43,12 @@ struct TipDetailScreen: View {
             }
         }
         .onAppear(){
-            
-            let request = AF.request("https://northwind.vercel.app/api/categories/\(_id)")
+            print("ID", _id)
+            let request = AF.request("https://plankton-app-jr8ee.ondigitalocean.app/api/tips/\(_id)")
             request.responseDecodable(of: TipModel.self){response in
                 tips = response.value ?? TipModel()
-                
+             
+//
                 
                 //            let request = AF.request("https://plankton-app-jr8ee.ondigitalocean.app/api/tips/\(_id)")
                 //            request.responseDecodable(of: TipModel.self){response in

@@ -16,10 +16,11 @@ struct HomeScreenTip: View {
             VStack{
                 HStack{
                     ForEach(TipList, id:\.self){item in
-                        Button(action: {
-                            istapped = true
-                        }, label: {
+                        
+                        NavigationLink(destination: TipDetailScreen(_id: item._id) ){
                             VStack {
+                                
+                                
                                 ZStack {
                                     RoundedRectangle(cornerRadius: 20)
                                         .fill(Color(
@@ -44,14 +45,21 @@ struct HomeScreenTip: View {
                                         .cornerRadius(20)
                                     
                                 }
-                                NavigationLink(destination: TipDetailScreen(_id: item._id),isActive: self.$istapped ){
+                               
+                                
+                                    
+                                    
                                     Text("\(item.name)")
                                         .foregroundColor(.green)
-                                }
+                                
                                 
                             }
+                        
                         }
-                        )
+                        
+                        
+                          
+                        
                     }
                 }
                 //                NavigationLink("", destination:TipDetailScreen(), isActive:self.$istapped)
